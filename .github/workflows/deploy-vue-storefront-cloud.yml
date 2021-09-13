@@ -4,8 +4,19 @@ on:
     branches:
       - main
 jobs:
+  create_variables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make .env file
+        shell: bash
+        run: >
+          (cd /var/www && printf "
+          SHOPIFY_ACCESS_TOKEN=${{ secrets.SHOPIFY_ACCESS_TOKEN }}\n
+          SHOPIFY_DOMAIN=${{ secrets.SHOPIFY_DOMAIN }}\n
+          " > .env)
   build:
     runs-on: ubuntu-latest
+    needs: create_variables
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
