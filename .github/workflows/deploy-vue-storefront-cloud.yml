@@ -4,6 +4,13 @@ on:
     branches:
       - main
 jobs:
+  - name: Make .env file
+    shell: bash
+    run: >
+      (cd /home/nodejs/backend && printf "
+      SHOPIFY_ACCESS_TOKEN=${{ secrets.SHOPIFY_ACCESS_TOKEN }}\n
+      SHOPIFY_DOMAIN=${{ secrets.SHOPIFY_DOMAIN }}\n
+      " > .env)
   build:
     runs-on: ubuntu-latest
     steps:
