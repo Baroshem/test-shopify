@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: >
           printf "
-          SHOPIFY_ACCESS_TOKEN=${{ secrets.SHOPIFY_ACCESS_TOKEN }}\n
+          SHOPIFY_ACCESS_TOKEN=${{ secrets.SHOPIFY_STOREFRONT_TOKEN }}\n
           SHOPIFY_DOMAIN=${{ secrets.SHOPIFY_DOMAIN }}\n
           " > .env
       - name: Build and publish docker image
